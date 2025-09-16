@@ -1,0 +1,154 @@
+/* src/styles/HomePage.css */
+
+/*
+  This sets up the full-screen container for the app.
+  It ensures the content is centered and the background covers the entire view.
+*/
+.homepage-container {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: white; /* Light text for a dark background */
+  padding: 50px;
+  position: relative; /* Essential for positioning the background layers */
+  overflow: hidden; /* Hides any overflow from the animations */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  z-index: 1; /* Ensures the main content is on top of the background */
+}
+
+/*
+  The main animated background layer.
+  We use multiple, vibrant gradients and animate their position.
+  Using a z-index of -1 places it behind the main content.
+*/
+.animated-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    -45deg,
+    #ee7752, /* Orange */
+    #e73c7e, /* Pink */
+    #23a6d5, /* Blue */
+    #23d5ab  /* Cyan */
+  );
+  background-size: 400% 400%; /* Makes the gradient larger than the viewport */
+  animation: gradient-shift 15s ease infinite; /* The key animation */
+  z-index: -1;
+  opacity: 0.8; /* A slight opacity to make text more readable */
+}
+
+/* The 3D floating orb effect.
+  We create a series of pseudo-elements (before and after)
+  that are shaped into glowing orbs and animated.
+*/
+.animated-background::before,
+.animated-background::after {
+  content: '';
+  position: absolute;
+  width: 25vw;
+  height: 25vw;
+  border-radius: 50%;
+  opacity: 0.6;
+  filter: blur(100px);
+  z-index: -2;
+  animation: float 25s infinite ease-in-out; /* The floating animation */
+}
+
+.animated-background::before {
+  background: #ff5f6d; /* Red/Pink */
+  top: 10%;
+  left: 20%;
+  animation-delay: -5s; /* Stagger the animation timing */
+}
+
+.animated-background::after {
+  background: #ffc371; /* Yellow/Orange */
+  bottom: 15%;
+  right: 25%;
+  animation-delay: -10s; /* Stagger the animation timing */
+}
+
+/* The @keyframes rules define the actual animations */
+
+/* Animates the background position to create a flowing gradient effect */
+@keyframes gradient-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Animates the floating orbs for a subtle 3D parallax effect */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-20px) rotate(10deg);
+  }
+  50% {
+    transform: translateY(20px) rotate(-10deg);
+  }
+  75% {
+    transform: translateY(-10px) rotate(5deg);
+  }
+}
+
+/*
+  Styling for the main content to ensure it stands out
+  over the animated background.
+*/
+.homepage-content h1 {
+  font-size: 4rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.homepage-content h2 {
+  font-size: 2rem;
+  font-weight: 300;
+  margin-top: 0;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.homepage-content p {
+  max-width: 600px;
+  margin: 1rem auto;
+  font-size: 1.1rem;
+}
+
+/*
+  Styling for the button, with a gradient effect on hover
+  to match the overall theme.
+*/
+.homepage-content button {
+  padding: 15px 30px;
+  font-size: 1.2em;
+  font-weight: bold;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  color: white;
+  background: linear-gradient(45deg, #11998e, #38ef7d);
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+}
+
+.homepage-content button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
+  background: linear-gradient(45deg, #38ef7d, #11998e);
+}
