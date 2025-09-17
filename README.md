@@ -58,3 +58,42 @@ Clone the repository:
 ```bash
 git clone https://github.com/your-username/flirtify.git
 cd flirtify
+
+Bootstrap project dependencies:
+Copy code
+Bash
+algokit project bootstrap
+▶ Running the Application
+1. Start the Local Development Network:
+Copy code
+Bash
+algokit localnet start
+2. Deploy the Smart Contract:
+Copy code
+Bash
+algokit project deploy testnet
+⚠ Note: This command may require your wallet mnemonic. Configure it as an environment variable or use --interactive.
+3. Run the Frontend Application:
+Copy code
+Bash
+cd frontend
+npm run start
+Your DApp will now be live at http://localhost:3000.
+💡 How to Use
+Connect Wallet – Click the Connect Wallet button on the home page. A QR code will appear.
+Scan with Petra Wallet – Use your Petra Wallet app to scan the QR code.
+Create Profile – Stake 0.02 ALGO to create your profile.
+View Profiles – Browse other users’ profiles on-chain.
+Send a Message – Pay 0.5 ALGO to send a message. This also increases your reputation score.
+📝 Smart Contract Details
+The main contract logic is in smart_contracts/approval_program.py:
+on_creation – Initializes global state
+on_opt_in – Handles profile creation & stake payment
+on_send_message – Processes paid messages and updates reputation via inner transactions
+on_close_out – Refunds user-staked ALGO when opting out
+🤝 Contributing
+Contributions are welcome!
+Open an issue for feature requests or bug reports
+Submit a PR for improvements
+📄 License
+This project is licensed under the MIT License.
