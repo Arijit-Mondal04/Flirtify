@@ -2,7 +2,7 @@ import { initializeApp } from "firebase/app";
 import { getFirestore, doc, setDoc, getDoc } from "firebase/firestore";
 
 const firebaseConfig = {
-    apiKey: "AIzaSyA1-HfNDHExuZFy02P9JYfyijSNr0bQoJQ",
+    apiKey: "enter_your_apikey",
     authDomain: "flirtify-4afc9.firebaseapp.com",
     projectId: "flirtify-4afc9",
     storageBucket: "flirtify-4afc9.firebasestorage.app",
@@ -52,4 +52,5 @@ export const getUserProfile = async (walletAddress) => {
     console.error("Error fetching user profile:", error);
     return null;
   }
+
 };
