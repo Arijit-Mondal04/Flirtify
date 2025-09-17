@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { createProfile } from '../services/algorand';
+import { saveUserSession } from '../services/firebase';
 import { FaHeart, FaChevronRight } from 'react-icons/fa';
 
 const ProfileCreationPage = ({ userAddress, onProfileCreated }) => {
@@ -13,7 +14,7 @@ const ProfileCreationPage = ({ userAddress, onProfileCreated }) => {
     bio: '',
     location: '',
     interests: [],
-    relationshipIntent: 'Long-term',
+    'relationshipIntent': 'Long-term',
     ageRange: 25,
     distance: 50,
   });
@@ -45,6 +46,7 @@ const ProfileCreationPage = ({ userAddress, onProfileCreated }) => {
     setLoading(true);
     const success = await createProfile(userAddress, profileData);
     if (success) {
+      await saveUserSession(userAddress, profileData);
       alert('Your Flirtify profile is live on Algorand!');
       onProfileCreated();
     } else {
@@ -479,3 +481,4 @@ const ProfileCreationPage = ({ userAddress, onProfileCreated }) => {
 };
 
 export default ProfileCreationPage;
+
